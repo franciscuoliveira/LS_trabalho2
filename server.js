@@ -31,3 +31,6 @@ app.get('/', (req, res) => {
 app.set('view engine', 'ejs')
 
  
+app.get('/compra', (req, res) => {
+    res.render('pages/compra')
+})

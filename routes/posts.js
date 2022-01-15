@@ -6,9 +6,12 @@ const res = require('express/lib/response');
 router.get('/', (req, res) => {
     res.send('Veiculos');
 });
-
+router.get('/compra', (req, res) => {
+    res.render('/pages/compra');
+});
 router.post('/', (req, res) => {
     console.log(req.body);
 });
+
 
 module.exports = router;
