@@ -12,8 +12,10 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.1",
+    "dotenv": "^12.0.3",
+    "ejs": "^3.1.6",
     "errorhandler": "^1.5.1",
-    "express": "^4.17.1",
+    "express": "^4.17.2",
     "mongoose": "^6.1.6",
     "morgan": "^1.10.0"
   }
