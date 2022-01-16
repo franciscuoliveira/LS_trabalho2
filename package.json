@@ -17,6 +17,7 @@
     "errorhandler": "^1.5.1",
     "express": "^4.17.2",
     "mongoose": "^6.1.6",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.15"
   }
 }
