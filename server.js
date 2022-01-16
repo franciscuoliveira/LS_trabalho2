@@ -34,3 +34,7 @@ app.set('view engine', 'ejs')
 app.get('/compra', (req, res) => {
     res.render('pages/compra')
 })
+
+app.get('/venda', (req, res) => {
+    res.render('pages/venda')
+})
