@@ -11,7 +11,7 @@ body{
     margin: auto;
     background-color: white;
     width: 500px;
-    height: 580px;
+    height: 330px;
     text-align: center;
     margin-top: 100px;
     padding: 10px;
@@ -33,6 +33,7 @@ input[type=submit]{
     margin-right: 125px;
     background-color: #35858B;
     color: white;
+    border: 0;
 }
 input[type=submit]:hover {
             background-color: #3A9399;
@@ -42,20 +43,20 @@ input[type=submit]:hover {
 p{
     color: #35858B;
 }
+  .subtitle{
+    text-align: center;
+  }
 </style>
 </head>
 
 <body>
-<form action="/handleAddAutomovel" method="post">
 <div class="form">
-<h2>Adicionar Automóvel</h2>
+<h2>Alterar Matrícula</h2>
+  <p class="subtitle">Introduza a matrícula que deseja alterar e a nova matrícula.</p>
 <p>Matrícula: <input name="matricula"></p>
-<p>Marca: <input name="marca" class="marca"></p>
-<p>Modelo: <input name="modelo"></p>
-<p>Tipo: <input name="tipo"></p>
-<p>Ano: <input name="ano"></p>
-<p>Preço de Compra: <input name="precoCompra"></p>
-<input type=submit value="Adicionar">
+<p>Nova matrícula: <input name="novaMatricula" class="novaMatricula"></p>
+
+<input type=submit value="Alterar">
 </div>
 </form>
 </body>
