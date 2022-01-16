@@ -38,3 +38,18 @@ app.get('/compra', (req, res) => {
 app.get('/venda', (req, res) => {
     res.render('pages/venda')
 })
+app.get('/atualizarRestauro', (req, res) => {
+    res.render('pages/atualizarRestauro')
+})
+app.get('/visualizar', (req, res) => {
+    res.render('pages/visualizar')
+})
+app.get('/gestaoBD', (req, res) => {
+    res.render('pages/gestaoBD')
+})
+app.get('/alterarDados', (req, res) => {
+    res.render('pages/alterarDados')
+})
+app.get('/relatorios', (req, res) => {
+    res.render('pages/relatorios')
+})
