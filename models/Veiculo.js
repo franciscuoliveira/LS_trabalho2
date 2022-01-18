@@ -1,11 +1,7 @@
 const mongoose = require('mongoose');
 
 const VeiculoSchema = mongoose.Schema({
-    matricula: {
-        type: String,
-        required: true,
-        unique: true
-    },
+    _id: mongoose.Schema.Types.Mixed,
     marca: {
         type: String,
         require: true
@@ -36,4 +32,33 @@ const VeiculoSchema = mongoose.Schema({
     },
 })
 
+const VendaSchema = mongoose.Schema({
+    _id: mongoose.Schema.Types.Mixed,
+    marca: {
+        type: String,
+        require: true
+    },
+    modelo: {
+        type: String,
+        require: true
+    },
+    ano: {
+        type: Number,
+        require: true
+    },
+    tipo: {
+        type: String,
+        require: true
+    },
+    precoVenda: {
+        type: Number,
+        require: true
+    },
+    dataVenda: {
+        type: String,
+        require: true
+    },
+})
+
 module.exports = mongoose.model('Veiculos', VeiculoSchema);
+module.exports = mongoose.model('Venda', VendaSchema);
