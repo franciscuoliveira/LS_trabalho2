@@ -31,7 +31,7 @@ app.post("/veiculo/adicionar", urlencodedParser, async function(req, res) {
       tipo: req.body.tipo,
       precoCompra: req.body.precoCompra,
       dataCompra: req.body.dataCompra,
-     //restorationCost: req.body.restorationCost
+     precoRestauro: req.body.precoRestauro
     };
    
 Veiculo.findOne(veiculo, function(err, result) {
@@ -55,6 +55,9 @@ Veiculo.findOne(veiculo, function(err, result) {
 });
 });
 
+app.post("/veiculo/vender", urlencodedParser, async function(req, res){
+     
+});
 
 app.get('/', async function(req, res) {
     try{

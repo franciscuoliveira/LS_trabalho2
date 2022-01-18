@@ -30,6 +30,10 @@ const VeiculoSchema = mongoose.Schema({
         type: String,
         require: true
     },
+    precoRestauro: {
+        type: Number,
+        require: true
+    },
 })
 
 module.exports = mongoose.model('Veiculos', VeiculoSchema);
