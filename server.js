@@ -15,14 +15,15 @@ app.use(errorhandler())
 const postsRoute = require('./routes/posts');
 const { stringify } = require('nodemon/lib/utils');
 const { post } = require('./routes/posts')
-const Veiculo = require('./models/Veiculo')
+const Veiculo = require('./models/Veiculo');
+const { findOneAndUpdate } = require('./models/Veiculo');
 
 //Conects to DB
 mongoose.connect('mongodb+srv://filipa:filipa@cluster0.l8mq2.mongodb.net/CarDealer?retryWrites=true&w=majority', () =>
     console.log('Conected to DB!')
 );
 
-app.post("/veiculo/adicionar", urlencodedParser, async function(req, res) {
+app.post("/compra", urlencodedParser, async function(req, res) {
     let veiculo = {
       matricula: req.body.matricula,
       marca: req.body.marca,
@@ -32,7 +33,7 @@ app.post("/veiculo/adicionar", urlencodedParser, async function(req, res) {
       precoCompra: req.body.precoCompra,
       dataCompra: req.body.dataCompra,
      //restorationCost: req.body.restorationCost
-    };
+};
    
 Veiculo.findOne(veiculo, function(err, result) {
   if (err) {
@@ -65,7 +66,7 @@ app.get('/', async function(req, res) {
     }
 });
 
-app.listen(3000, ()=> console.log('server ok http://localhost:3000'));
+app.listen(3003, ()=> console.log('server ok http://localhost:3000'));
 
 
 //express
@@ -97,3 +98,53 @@ app.get('/alterarDados', (req, res) => {
 app.get('/relatorios', (req, res) => {
     res.render('pages/relatorios')
 })
+app.get('/alterarMatricula', (req,res)=>{
+  res.render('pages/alterarMatricula')
+})
+app.put('/alterarMatricula', (req, res)=>{
+
+  let veiculo = {
+
+    "matricula" : req.body.matricula
+    
+  }
+  let newMatricula ={
+    $push: {
+    "matricula" : req.body.novaMatricula
+
+    }
+  }
+
+  Veiculo.findByIdAndUpdate(veiculo, newMatricula, (err, res)=>{
+    console.log(err);
+    console.log(res);
+  });
+
+
+
+
+
+  /* let doc = await veiculo.findOne(oldMatricula, newMatricula, {
+    new: true
+  });
+
+  Veiculo.findOneAndUpdate(veiculo, req.body)
+  .exec(function(err, result){ 
+    if(err){
+      return res.send(err)
+    }
+    if(result){
+      res.json({result, message: 'Successfully updated'})
+    }
+  }) */
+})
+
+
+
+
+
+
+
+
+
+
