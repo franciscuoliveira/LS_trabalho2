@@ -10,6 +10,7 @@ var urlencodedParser = bodyParser.urlencoded({ extended: true });
 app.use(bodyParser.json())
 app.use(logger('dev'))
 app.use(errorhandler())
+app.set('view engine', 'ejs');
 
 //Imports Routes
 const postsRoute = require('./routes/posts');
@@ -26,6 +27,7 @@ app.post("/vender", urlencodedParser, async function(req, res){
   
 });
 app.post("/veiculo/adicionar", urlencodedParser, async function(req, res) {
+
     let veiculo = {
       matricula: req.body.matricula,
       marca: req.body.marca,
@@ -37,7 +39,7 @@ app.post("/veiculo/adicionar", urlencodedParser, async function(req, res) {
      //restorationCost: req.body.restorationCost
     };
    
-VeiculoSchema.findOne(veiculo, function(err, result) {
+Veiculo.findOne(veiculo, function(err, result) {
   if (err) {
     return res.send(err)
   }
@@ -46,7 +48,7 @@ VeiculoSchema.findOne(veiculo, function(err, result) {
     return res.send("Este veículo já existe!")
   }
 
-  VeiculoSchema.create(veiculo, function(err, result) {
+  Veiculo.create(veiculo, function(err, result) {
     if (err) {
       return res.send(err)
     }
