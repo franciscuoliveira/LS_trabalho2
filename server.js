@@ -25,6 +25,8 @@ mongoose.connect('mongodb+srv://FFL:<FFL4s>@cluster0.l8mq2.mongodb.net/CarDealer
 
 app.listen(3000, ()=> console.log('server ok http://localhost:3000'));
 
+
+
 //express
 app.get('/', (req, res) => {
     res.render('pages/index')
