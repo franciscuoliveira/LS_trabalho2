@@ -123,7 +123,7 @@ app.post("/veiculo/vender", urlencodedParser, async function(req, res){
       }
 });
 
-app.get('/', async function(req, res) {
+app.get('/list', async function(req, res) {
     try{
         const posts = await Veiculo.find();
         res.json(posts);
