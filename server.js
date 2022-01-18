@@ -109,10 +109,10 @@ app.post("/veiculo/vender", urlencodedParser, async function(req, res){
         dataVenda: req.body.dataCompra,
       };
     
-      const existe = await VehicleModel.findOne({_id: req.body._id});
+      const existe = await VendaModel.findOne({_id: req.body._id});
 
       if(existe){
-        VehicleModel.create(venda, function(err, result) {
+        VendaModel.create(venda, function(err, result) {
             if(err){
                 return res.send(err)
             }
@@ -130,6 +130,34 @@ app.get('/list', async function(req, res) {
         res.json(posts);
     }catch(err){
         res.json({message:err});
+    }
+});
+
+app.get('/vendidos', async function(req, res) {
+    const vendido = await VendaModel.find();
+
+    if(vendido){
+        for(let i = 0; i < sold.length; i++) {
+
+            console.log(sold[i]._id);
+            stock = await VehicleModel.findOne({_id: sold[i]._id});
+        if(stock){
+            string += "<li> <b>Matrícula: " + sold[i]._id +
+            <ul>
+                <li>Marca: " + stock.brand + "</li>
+                <li>Modelo: " + stock.model + "</li>
+                <li>Ano: " + stock.year + "</li>
+                <li>Tipo: " + stock.type + "</li>
+                <li>Preço de compra: " + stock.purchasePrice + "</li>
+                <li>Data de compra:" + stock.purchaseDate + "</li>
+                <li>Preço de restauro: " + stock.restorationCost + "</li>
+            </ul>
+            
+            }
+            else{
+                return
+            }
+        }
     }
 });
 
@@ -168,6 +196,8 @@ app.get('/relatorios', (req, res) => {
 app.get('/alterarMatricula', (req,res)=>{
   res.render('pages/alterarMatricula')
 })
+
+
 app.put('/alterarMatricula', (req, res)=>{
 
   let veiculo = {
