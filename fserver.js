@@ -27,7 +27,6 @@ app.post("/vender", urlencodedParser, async function(req, res){
   
 });
 app.post("/veiculo/adicionar", urlencodedParser, async function(req, res) {
-
     let veiculo = {
       matricula: req.body.matricula,
       marca: req.body.marca,
@@ -68,6 +67,7 @@ app.get('/', async function(req, res) {
     }catch(err){
         res.json({message:err});
     }
+    
 });
 
 //app.delete()
