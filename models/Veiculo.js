@@ -26,6 +26,10 @@ const VeiculoSchema = mongoose.Schema({
         type: Number,
         require: true
     },
+    dataCompra: {
+        type: Date,
+        require: true
+    },
 })
 
 module.exports = mongoose.model('Veiculos', VeiculoSchema);
