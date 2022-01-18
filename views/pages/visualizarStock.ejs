@@ -49,13 +49,40 @@
     </style>
     </head>
     
-    <body>
+    <body onload="start()">
     <div class="form">
     <h2>Automóveis em Stock</h2>
-      
+      <ul id="listaVeiculos">
+          <li>Matricula: + veiculos[i].matricula</li>
+      </ul>
     
     </div>
     </form>
+
+    <script>
+        function start(){
+            visualizarVeiculos();
+        }
+
+        function visualizarVeiculos(){
+            
+        }
+    </script>
+
+    <script>
+        function visualizarVeiculos(){
+            var xhttp = new XMLHttpRequest();
+            xttp.onreadystatechange = function() {
+                if(this.readyState == 4 && this.status == 200){
+                    console.log("Response empty");
+                    document.getElementById("listaVeiculos").innerHTML = this.responseText;
+                }
+            }
+            xhttp.open("GET", "/views/pages/visualizarStock", true);
+            xhttp.send();
+        }
+    </script>
+
     </body>
     </html>
     
