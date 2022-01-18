@@ -27,7 +27,7 @@ const VeiculoSchema = mongoose.Schema({
         require: true
     },
     dataCompra: {
-        type: Date,
+        type: String,
         require: true
     },
 })
