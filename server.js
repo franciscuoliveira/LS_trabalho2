@@ -142,16 +142,7 @@ app.get('/vendidos', async function(req, res) {
             console.log(sold[i]._id);
             stock = await VehicleModel.findOne({_id: sold[i]._id});
         if(stock){
-            string += "<li> <b>Matrícula: " + sold[i]._id +
-            <ul>
-                <li>Marca: " + stock.brand + "</li>
-                <li>Modelo: " + stock.model + "</li>
-                <li>Ano: " + stock.year + "</li>
-                <li>Tipo: " + stock.type + "</li>
-                <li>Preço de compra: " + stock.purchasePrice + "</li>
-                <li>Data de compra:" + stock.purchaseDate + "</li>
-                <li>Preço de restauro: " + stock.restorationCost + "</li>
-            </ul>
+            string += "<li><b>Matrícula: " + _id[i]._id + " </b><ul><li>Marca: " + stock.marca + "</li><li>Modelo: " + stock.modelo + "</li><li>Ano: " + stock.ano + "</li><li>Tipo: " + stock.tipo + "</li><li>Preço de Compra: " + stock.precoCompra + "</li><li>Data compra:" + stock.dataCompra + "</li><li>Preço de Restauro: " + stock.precoRestauro + "</li></ul></li>";
             
             }
             else{
