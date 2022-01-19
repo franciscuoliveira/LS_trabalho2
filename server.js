@@ -125,12 +125,25 @@ app.post("/veiculo/vender", urlencodedParser, async function(req, res){
 });
 
 app.get('/list', async function(req, res) {
-    try{
-        const posts = await Veiculo.find();
-        res.json(posts);
-    }catch(err){
-        res.json({message:err});
-    }
+  const emStock = await VendaModel.find();
+
+  if(emStock){
+      for(let i = 0; i < stock.length; i++) {
+
+          console.log(stock[i]._id);
+          stock = await VehicleModel.findOne({_id: stock[i]._id});
+      if(stock){
+          string += "<li> <b>Matrícula: " + stock[i]._id +
+          <ul>
+              <li>Marca: " + emStock.marca + " Modelo: " + emStock.modelo + " Ano: " + emStock.ano + " Tipo: " + emStock.tipo + " Preço de compra: " + emStock.precoCompra + " Data de compra:" + emStock.dataCompra + " Preço de restauro: " + emStock.restorationCost + " </li>
+                 </ul>
+          
+          }
+          else{
+              return
+          }
+      }
+  }
 });
 
 app.get('/vendidos', async function(req, res) {
@@ -144,13 +157,7 @@ app.get('/vendidos', async function(req, res) {
         if(stock){
             string += "<li> <b>Matrícula: " + sold[i]._id +
             <ul>
-                <li>Marca: " + stock.brand + "</li>
-                <li>Modelo: " + stock.model + "</li>
-                <li>Ano: " + stock.year + "</li>
-                <li>Tipo: " + stock.type + "</li>
-                <li>Preço de compra: " + stock.purchasePrice + "</li>
-                <li>Data de compra:" + stock.purchaseDate + "</li>
-                <li>Preço de restauro: " + stock.restorationCost + "</li>
+                <li>Marca: " + stock.brand + " Modelo: " + stock.model + " Ano: " + stock.year + " Tipo: " + stock.type + " Preço de compra: " + stock.purchasePrice + " Data de compra:" + stock.purchaseDate + " Preço de restauro: " + stock.restorationCost + " Data de venda: "+ stock.dataVenda + " Preço de venda: "+ stock.precoVenda"</li>
             </ul>
             
             }
