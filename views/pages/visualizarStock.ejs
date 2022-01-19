@@ -57,7 +57,12 @@
     <div class="form">
     <h2>Automóveis em Stock</h2>
       <ul id="listaVeiculos">
-          <li>Matricula: + veiculos[i].matricula</li>
+          <li>Matricula: veiculo[i].matricula</li>
+          <li>Marca: veiculo[i].marca</li>
+          <li>Modelo: veiculo[i].modelo</li>
+          <li>Tipo: veiculo[i].tipo</li>
+          <li>Ano: veiculo[i].ano</li>
+          <li>Preço: veiculo[i].preco</li>
       </ul>
     
     </div>
@@ -66,10 +71,6 @@
     <script>
         function start(){
             visualizarVeiculos();
-        }
-
-        function visualizarVeiculos(){
-            
         }
     </script>
 
@@ -82,11 +83,11 @@
                     document.getElementById("listaVeiculos").innerHTML = this.responseText;
                 }
             }
-            xhttp.open("GET", "/views/pages/visualizarStock", true);
+            xhttp.open("GET", "/list", true);
             xhttp.send();
         }
     </script>
 
     </body>
-    </html>
+
     
