@@ -105,11 +105,11 @@ VehicleModel.findOne(veiculo, function(err, result) {
 app.post("/veiculo/vender", urlencodedParser, async function(req, res){
     let venda = {
         _id: req.body._id,
-        precoVenda: req.body.precoCompra,
-        dataVenda: req.body.dataCompra,
+        precoVenda: req.body.precoVenda,
+        dataVenda: req.body.dataVenda,
       };
     
-      const existe = await VendaModel.findOne({_id: req.body._id});
+      const existe = await VehicleModel.findOne({_id: req.body._id});
 
       if(existe){
         VendaModel.create(venda, function(err, result) {
@@ -121,51 +121,48 @@ app.post("/veiculo/vender", urlencodedParser, async function(req, res){
                 return res.send("Venda efetuada")
             }
         })
+      }else{
+        return res.send("erro")
       }
 });
 
 app.get('/list', async function(req, res) {
-  const emStock = await VendaModel.find();
-
+  const emStock = await VehicleModel.find();
+  string = "";
   if(emStock){
-      for(let i = 0; i < stock.length; i++) {
+      for(let i = 0; i < emStock.length; i++) {
 
-          console.log(stock[i]._id);
-          stock = await VehicleModel.findOne({_id: stock[i]._id});
-      if(stock){
-          string += "<li> <b>Matrícula: " + stock[i]._id +
-          <ul>
-              <li>Marca: " + emStock.marca + " Modelo: " + emStock.modelo + " Ano: " + emStock.ano + " Tipo: " + emStock.tipo + " Preço de compra: " + emStock.precoCompra + " Data de compra:" + emStock.dataCompra + " Preço de restauro: " + emStock.restorationCost + " </li>
-                 </ul>
           
-          }
-          else{
-              return
-          }
+          string += "<li> <b>Matrícula: " + emStock[i]._id + "<><li>Marca: " + emStock[i].marca + " Modelo: " + emStock[i].modelo + " Ano: " + emStock[i].ano + " Tipo: " + emStock[i].tipo + " Preço de compra: " + emStock[i].precoCompra + " Data de compra:" + emStock[i].dataCompra + " Preço de restauro: " + emStock[i].restorationCost + " </li>";
+          
       }
+  }else{
+    string = "Não há veículos em stock."
   }
+  console.log(string)
+  return res.send(string)
 });
 
 app.get('/vendidos', async function(req, res) {
     const vendido = await VendaModel.find();
-
+    string = ""
     if(vendido){
-        for(let i = 0; i < sold.length; i++) {
+        for(let i = 0; i < vendido.length; i++) {
 
-            console.log(sold[i]._id);
-            stock = await VehicleModel.findOne({_id: sold[i]._id});
+            console.log(vendido[i]._id);
+            stock = await VehicleModel.findOne({_id: vendido[i]._id});
         if(stock){
-            string += "<li> <b>Matrícula: " + sold[i]._id +
-            <ul>
-                <li>Marca: " + stock.brand + " Modelo: " + stock.model + " Ano: " + stock.year + " Tipo: " + stock.type + " Preço de compra: " + stock.purchasePrice + " Data de compra:" + stock.purchaseDate + " Preço de restauro: " + stock.restorationCost + " Data de venda: "+ stock.dataVenda + " Preço de venda: "+ stock.precoVenda"</li>
-            </ul>
+            string += "<li> <b>Matrícula: " + vendido[i]._id + "<ul><li>Marca: " + stock.marca + " Modelo: " + stock.modelo + " Ano: " + stock.ano + " Tipo: " + stock.tipo + " Preço de compra: " + stock.precoCompra + " Data de compra:" + stock.dataCompra + " Preço de restauro: " + stock.precoRestauro + " Data de venda: "+ vendido[i].dataVenda + " Preço de venda: "+ vendido[i].precoVenda + "</li>";
             
             }
-            else{
-                return
-            }
+      
         }
     }
+    else{
+      string = "Não há veículos vendidos."
+    }
+
+    return res.send(string)
 });
 
 app.listen(3003, ()=> console.log('server ok http://localhost:3000'));
@@ -209,12 +206,12 @@ app.put('/alterarMatricula', (req, res)=>{
 
   let veiculo = {
 
-    "matricula" : req.body.matricula
+    "id" : req.body._id
     
   }
   let newMatricula ={
     $push: {
-    "matricula" : req.body.novaMatricula
+    "id" : req.body.novaMatricula
 
     }
   }
