@@ -49,11 +49,33 @@
     </style>
     </head>
     
-    <body>
+    <body onload="start()">
     <div class="form">
     <h2>Automóveis Vendidos</h2>
-      
+    <ul id="listaVeiculos">
+       
+    </ul>
     
+    <script>
+        function start(){
+            visualizarVeiculos();
+        }
+    </script>
+
+    <script>
+        function visualizarVeiculos(){
+            var xhttp = new XMLHttpRequest();
+            xttp.onreadystatechange = function() {
+                if(this.readyState == 4 && this.status == 200){
+                    console.log("Response empty");
+                    document.getElementById("listaVeiculos").innerHTML = this.responseText;
+                }
+            }
+            xhttp.open("GET", "/vendidos", true);
+            xhttp.send();
+        }
+    </script>
+
     </div>
     </form>
     </body>
